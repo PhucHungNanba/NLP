@@ -1,4 +1,4 @@
-# Đồ án cuối kỳ: Xử lý ngôn ngữ tự nhiên (NLP)
+# Đồ án cuối kỳ: Xử lý ngôn ngữ tự nhiên NLP
 
 ## Đề tài
 Dịch máy Anh–Pháp với mô hình Encoder–Decoder sử dụng LSTM
@@ -24,8 +24,9 @@ Khoa Công nghệ Thông tin — Trường Đại học Sài Gòn
 | `3122411073-Huynh_Phuc_Hung-NLP.docx` | Bản tiểu luận đầy đủ (.docx) |
 | `3122411073-Huynh_Phuc_Hung-NLP.pdf` | Bản tiểu luận xuất ra PDF |
 | `README.md` | File giới thiệu repo |
-| `best_model.pth` *(nếu có)* | Checkpoint mô hình tốt nhất |
+| `best_model.pth` | Checkpoint mô hình tốt nhất |
 
+Tải checkpoint mô hình tại đây: [best_model.pth trên Google Drive](https://drive.google.com/drive/folders/1GWSegV0w2Y3-_QxLA-1gEkR1hpAT9rih))
 ---
 
 ## Mô hình sử dụng
@@ -81,7 +82,26 @@ Sau đó, dữ liệu được đọc thành công và xử lý bình thường.
 
 ---
 
-## Mã & Hướng phát triển
+## Hạn chế của đề tài
+Với tinh thần cầu thị khoa học, em xin thẳng thắn nhìn nhận những hạn chế còn tồn tại của đồ án:
+- Vấn đề từ vựng chưa biết: Do giới hạn từ điển ở mức 10.000 từ, mô hình thường xuyên trả về token <unk> khi gặp các từ chuyên ngành hoặc tên riêng.
+- Khả năng xử lý câu dài kém: Như đã phân tích ở Chương 4, điểm BLEU giảm mạnh khi câu đầu vào vượt quá 20 từ. Đây là giới hạn vật lý của kiến trúc vector cố định.
+- Thiếu tính ứng dụng thực tiễn: Hiện tại mô hình chỉ chạy trên môi trường Google Colab. Người dùng phổ thông chưa thể tiếp cận thông qua một giao diện web hay mobile thân thiện.
 
-Nếu sau này em thêm Attention hoặc Beam Search thì có thể cập nhật lại phần mô hình và kết quả.  
-Có thể bổ sung thêm phần demo ảnh mô hình hoặc hướng dẫn cài đặt chi tiết hơn nếu cần.  
+## Lộ trình phát triển công nghệ
+Để khắc phục các hạn chế trên và nâng cấp hệ thống tiệm cận với các tiêu chuẩn công nghiệp, em xin đề xuất một lộ trình phát triển chi tiết cho giai đoạn tiếp theo (Phase 2), dự kiến kéo dài 12 tuần.
+Lộ trình này tập trung vào 3 mũi nhọn chính: Nâng cấp thuật toán, Tối ưu dữ liệu và Triển khai sản phẩm.
+
+![Lộ trình phát triển dự án](https://private-user-images.githubusercontent.com/230809903/531507373-f5f8c88b-d7c0-4db6-9808-eb261e27417d.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjczNjk0NjAsIm5iZiI6MTc2NzM2OTE2MCwicGF0aCI6Ii8yMzA4MDk5MDMvNTMxNTA3MzczLWY1ZjhjODhiLWQ3YzAtNGRiNi05ODA4LWViMjYxZTI3NDE3ZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMTAyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDEwMlQxNTUyNDBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02ZjZkY2Y1NWFlMzVkZjhjOGNiNTY3MDEyMTFiNTczYjhkMDhiYTNhZjkxNDNlNDVhY2Q3ODg4Y2I0ZDk1YmVjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.7P5byO-Kwb9oiozTuwnqE09o70vsEc5L9CO7pX_2JXA)
+
+ Chi tiết các hạng mục nâng cấp:
+Tuần 1-4: Tích hợp Cơ chế Attention
+- Mục tiêu: Giải quyết triệt để vấn đề quên thông tin ở câu dài.
+- Kỳ vọng: Điểm BLEU tăng từ 14.6 lên mức 20-22.
+Tuần 5-8: Chuyển đổi sang kiến trúc Transformer & BPE
+- Thay thế LSTM bằng Transformer để tận dụng khả năng huấn luyện song song.
+- Sử dụng Byte Pair Encoding để xử lý từ vựng ở cấp độ ký tự con, giúp loại bỏ hoàn toàn lỗi <unk>.
+Tuần 9-12: Triển khai Web App
+- Đóng gói mô hình bằng Docker container.
+- Xây dựng giao diện người dùng đơn giản bằng Streamlit hoặc Flask.
+- Tích hợp API để cho phép các ứng dụng khác gọi vào dịch vụ dịch thuật.
