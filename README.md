@@ -15,6 +15,10 @@ Khoa Công nghệ Thông tin — Trường Đại học Sài Gòn
 - Học kỳ: HK1 / 2025–2026
 
 ---
+## Mục đích repo
+
+Dưới đây là đường dẫn Google Drive của em, nơi lưu trữ đầy đủ và minh bạch các tài liệu phân công công việc, kế hoạch, cũng như toàn bộ minh chứng trong suốt quá trình thực hiện đồ án cuối kỳ môn Xử lý ngôn ngữ tự nhiên. https://drive.google.com/drive/folders/1GWSegV0w2Y3-_QxLA-1gEkR1hpAT9rih
+
 
 ## Cấu trúc repo
 
